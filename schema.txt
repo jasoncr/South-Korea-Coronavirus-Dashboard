@@ -1,0 +1,52 @@
+CREATE TABLE cases (
+  case_id INT,
+  province VARCHAR(255),
+  city VARCHAR(255),
+  group_ BOOL,
+  infection_case VARCHAR(255),
+  confirmed INT,
+  PRIMARY KEY (case_id)
+);
+
+CREATE TABLE region (
+  code INT,
+  province VARCHAR(255),
+  city VARCHAR(255),
+  latitude FLOAT,
+  longitude FLOAT,
+  elderly_population_ratio FLOAT,
+  elderly_alone_ratio FLOAT,
+  nursing_home_count INT,
+  PRIMARY KEY (code)
+);
+
+
+CREATE TABLE time_age (
+  id INT,
+  date DATE,
+  age VARCHAR(255),
+  confirmed INT,
+  deceased INT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE weather (
+  id INT,
+  code INT,
+  province VARCHAR(255),
+  date DATE,
+  avg_temp FLOAT,
+  min_temp FLOAT,
+  max_temp FLOAT,
+  avg_relative_humidity FLOAT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE time_province (
+  id INT,
+  date DATE,
+  province VARCHAR(255),
+  confirmed INT,
+  deceased INT,
+  PRIMARY KEY (id)
+);

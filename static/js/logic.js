@@ -1,17 +1,54 @@
+// dictionary of the cities and their lat and long coordinates
+var city_dict = {
+    'Seoul': [37.566536, 126.977966],
+    'Busan': [35.179554, 129.075638],
+    'Daegu': [35.871433, 128.601440],
+    'Incheon': [37.456257, 126.705208],
+    'Gwangju' : [35.162441, 126.910339],
+    'Daejeon': [36.350410, 127.384544],
+    'Ulsan': [35.548679, 129.315002],
+    'Sejong': [14.000220, 106.495941],
+    'Gyeonggi-do': [37.413799, 127.518303],
+    'Gangwon-do': [38.780891, 127.521347],
+    'Chungcheongbuk-do': [18.472019, -69.902031],
+    'Chungcheongnam-do': [36.789796, 127.001849],
+    'Jeollabuk-do': [35.721180, 127.141327],
+    'Jeollanam-do': [35.016060, 126.710757],
+    'Gyeongsangbuk-do': [36.119485, 128.344573],
+    'Gyeongsangnam-do': [37.663998, 127.978459],
+    'Jeju-do': [33.510139, 126.521927]
+};
 
-// function myFunc(data) {
-//     return data
-// }
+// Use D3 to select the dropdown menu
+d3.selectAll("#selDataset").on("change", updatePlotly);
+var select = document.getElementById("selDataset");
 
-var city_list = ['Seoul', 'Busan', 'Daegu', 'Incheon', 'Gwangju', 'Daejeon', 'Ulsan', 'Sejong', 'Gyeonggi-do', 
-    'Gangwon-do', 'Chungcheongbuk-do', 'Chungcheongnam-do', 'Jeollabuk-do', 'Jeollanam-do', 
-    'Gyeongsangbuk-do', 'Gyeongsangnam-do', 'Jeju-do']
+// Add the test subject id numbers to the drop down list
+for (i = 0; i < Object.keys(city_dict).length; i++){
+    var id = Object.keys(city_dict)[i];
+    var option = document.createElement("option");
+    option.text = id;
+    option.value = id;
+    select.appendChild(option);
+}
+
+function updatePlotly() {
+    // Use D3 to select the dropdown menu
+    var dropdownMenu = d3.select("#selDataset");
+    // Assign the value of the dropdown menu option to a variable
+    var city = dropdownMenu.property("value");
+    console.log(city + " " + city_dict[city])
+    // heatmap_func(city)
+}
 
 // heatmap
-/*var myMap = L.map("case_heatmap", {
-    center: [35.908, -127.767],
-    zoom: 4
-  });
+/*function heatmap_func(city) {
+    var myMap = L.map("case_heatmap", {
+        center: city_dict[city],
+        zoom: 4
+      });
+}
+
 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",

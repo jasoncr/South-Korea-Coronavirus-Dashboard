@@ -25,7 +25,6 @@ conn = psycopg2.connect(
     password=password)
 cur = conn.cursor()
 
-
 # create instance of Flask app
 app = Flask(__name__)
 
@@ -50,8 +49,8 @@ def index():
     # creates list of arrays of the latitude and longitude of cases
     # should be the data for the heatmap
     cur.execute("""
-    SELECT latitude, longitude
-    FROM region
+    SELECT province, confirmed, deceased
+    FROM time_province
     """)
     heatmap_results = cur.fetchall() # query results is a list of arrays
 
@@ -64,21 +63,20 @@ def index():
     barchar_results = cur.fetchall() # query results is a list of arrays
 
     # creates list of arrays of the breakdown of cases and deaths by age group
-    # should be the data for the age pie chart
+    # should be the data for both of the pie charts
     cur.execute("""
     SELECT age, confirmed, deceased
     FROM time_age
     """)
-    pie_age_results = cur.fetchall() # query results in a list of arrays
+    pie_results = cur.fetchall() # query results in a list of arrays
 
-
-
-
+        # makes all of the data accessible in the html
     return render_template("index.html", 
         scatter_data = weather_results, 
         heatmap_data=heatmap_results,
         barchar_data = barchar_results,
-        pie_age_data = pie_age_results)
+        pie_data = pie_results
+        )
 
     # close the cursor
     cur.close()
@@ -91,10 +89,9 @@ if __name__ == "__main__":
 
 # multiple csv files - done
 # pull csvs to db - done
-# do calculations inside db alchemy etl
-# pull data into flask - converts db useable form
-# push json information to html dashboard
-
+# do calculations inside db alchemy etl - done
+# pull data into flask - converts db useable form - done
+# push information to html dashboard
 
 
 # note: unit 10 day 3  / check out titanic data as well

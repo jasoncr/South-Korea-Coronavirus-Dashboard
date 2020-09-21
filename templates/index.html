@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Coronavirus in South Korea</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 
 <body>
@@ -17,8 +17,8 @@
       <div class="col-md-12 jumbotron text-center">
         <h1>Covid-19 Cases in South Korea Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
-        <!-- doing testing with this -->
-        <p>{{ pie_age_data }}</p>
+
+        <!-- <div id = "tester" data-scatter_data='{{ scatter_data|tojson }}'>testing</div> -->
       </div>
     </div>
     <div class="row">
@@ -55,11 +55,22 @@
       </div>
     </div>
   </div>
-
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script type = "text/javascript" src="/static/js/app.js"></script>
-  
+  <script type="text/javascript">
+  function myFunc(data) {
+    return data
+}
+    var barchar_data  = myFunc({{barchar_data|tojson}})
+    var heatmap_data = myFunc({{heatmap_data|tojson}})
+    var scatter_data = myFunc({{scatter_data|tojson}})
+    var pie_data = myFunc({{pie_data|tojson}})
+</script>
+  <!-- API Key -->
+  <script type="text/javascript" src="static/js/config.js"></script>
+<script type = "text/javascript" src="static/js/logic.js"></script>
 </body>
 
 </html>

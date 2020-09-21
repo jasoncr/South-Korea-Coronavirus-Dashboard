@@ -1,7 +1,7 @@
 
-function myFunc(data) {
-    return data
-}
+// function myFunc(data) {
+//     return data
+// }
 
 var city_list = ['Seoul', 'Busan', 'Daegu', 'Incheon', 'Gwangju', 'Daejeon', 'Ulsan', 'Sejong', 'Gyeonggi-do', 
     'Gangwon-do', 'Chungcheongbuk-do', 'Chungcheongnam-do', 'Jeollabuk-do', 'Jeollanam-do', 

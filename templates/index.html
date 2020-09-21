@@ -60,17 +60,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
-  function myFunc(data) {
-    return data
-}
+    function myFunc(data) {
+      return data
+    }
     var barchar_data  = myFunc({{barchar_data|tojson}})
     var heatmap_data = myFunc({{heatmap_data|tojson}})
     var scatter_data = myFunc({{scatter_data|tojson}})
     var pie_data = myFunc({{pie_data|tojson}})
-</script>
+  </script>
   <!-- API Key -->
   <script type="text/javascript" src="static/js/config.js"></script>
-<script type = "text/javascript" src="static/js/logic.js"></script>
+  <script type = "text/javascript" src="static/js/logic.js"></script>
 </body>
 
 </html>

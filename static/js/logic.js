@@ -20,7 +20,7 @@ var city_dict = {
 };
 
 // Use D3 to select the dropdown menu
-d3.selectAll("#selDataset").on("change", updatePlotly);
+d3.selectAll("#selDataset").on("change", updateMenu);
 var select = document.getElementById("selDataset");
 
 // Add the test subject id numbers to the drop down list
@@ -30,45 +30,35 @@ for (i = 0; i < Object.keys(city_dict).length; i++){
     option.text = id;
     option.value = id;
     select.appendChild(option);
-}
+};
 
-function updatePlotly() {
+function updateMenu() {
     // Use D3 to select the dropdown menu
     var dropdownMenu = d3.select("#selDataset");
     // Assign the value of the dropdown menu option to a variable
     var city = dropdownMenu.property("value");
-    console.log(city + " " + city_dict[city])
-    // heatmap_func(city)
+    console.log(city_dict[city])
+    new heatmap_func(city)
+};
+
+// Start with heatmap at Seoul
+var mymap = L.map('mapid').setView([37.566536, 126.977966], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: API_KEY
+    }).addTo(mymap);
+
+// moves heatmap to new province
+function heatmap_func(city) {
+    mymap.panTo(new L.LatLng(city_dict[city][0], city_dict[city][1]))
 }
 
-// heatmap
-/*function heatmap_func(city) {
-    var myMap = L.map("case_heatmap", {
-        center: city_dict[city],
-        zoom: 4
-      });
-}
-
-
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/streets-v11",
-    accessToken: API_KEY
-}).addTo(myMap);
-  
-var heatArray = [35.908, -127.767]
-
-var heat = L.heatLayer(heatArray, {
-    radius : 20,
-    blur: 35
-}).addTo(myMap)
-
-
-*/
-// scatter
+// Scatter Plot of Temperature(Celcius) vs Cases
 city_name = []
 cases = []
 avg_temp = []
@@ -78,7 +68,6 @@ for (var row = 0; row < scatter_data.length ; row++) {
     cases.push(scatter_data[row][1])
     avg_temp.push(scatter_data[row][3])
 }
-
 var trace3 = {
     type: "scatter",
     mode: "markers", 
@@ -89,15 +78,14 @@ var trace3 = {
         size: 12
     }
 };
-
 var layout1 = {
-    title : 'Scatter Title'
+    title : 'Temperature(Celcius) vs Cases',
+    xaxis : {title: "Temperatures in Celcius"},
+    yaxis : {title : "Coronavirus Cases"}
 }
-
 Plotly.newPlot("temp_scatter", [trace3], layout1)
-// bar chart
 
-
+// Number of Cases per Province
 cities = []
 confirmed = []
 total_confirmed = 0
@@ -114,14 +102,17 @@ var trace = {
     y : confirmed,
     type : "bar"
 };
+var layout2 = {
+    title : 'Cases by Province',
+    xaxis : {title : "Province Name"},
+    yaxis : {title : "Number of Cases"}
+}
 
-Plotly.newPlot("province_bar", [trace])
+Plotly.newPlot("province_bar", [trace], layout2)
 
-// pies
-
+// Age Group Pie
 labels = []
 values = []
-
 for (var row = 0; row < pie_data.length ; row++) {
     labels.push(pie_data[row][0])
     values.push(pie_data[row][1])
@@ -131,28 +122,26 @@ var trace1 = {
     values : values,
     type : "pie"
 };
-var layout = {
-    title: "Age"
+var layout2 = {
+    title: "Age Group with Coronavirus",
+    width: 400
 }
-Plotly.newPlot("age_pie", [trace1], layout)
+Plotly.newPlot("age_pie", [trace1], layout2)
 
-
-// Mortality Pie 
-
+// Mortality Pie
 labels = []
 values = []
-
 for (var row = 0; row < pie_data.length ; row++) {
     labels.push(pie_data[row][0])
     values.push(pie_data[row][2] / pie_data[row][1])
 }
-
 var trace2 = {
     labels: labels,
     values : values,
     type : "pie"
 };
-var layout = {
-    title: "Mortality Rate"
+var layout3 = {
+    title: "Mortality Rate by Age Group",
+    width: 400
 }
-Plotly.newPlot("survival_pie", [trace2], layout)
+Plotly.newPlot("survival_pie", [trace2], layout3)

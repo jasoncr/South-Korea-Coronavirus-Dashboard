@@ -8,17 +8,24 @@
   <title>Coronavirus in South Korea</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
 </head>
 
 <body>
-  </div>
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
         <h1>Covid-19 Cases in South Korea Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-
-        <!-- <div id = "tester" data-scatter_data='{{ scatter_data|tojson }}'>testing</div> -->
+        <p>Select the province to zoom into that area of the heatmap.</p>
+        <p>Below are more visualizations to explore the affect Coronavirus has had on South Korea.</p>
       </div>
     </div>
     <div class="row">
@@ -29,36 +36,42 @@
             <option style = "padding: 5px;">Choose Province Name</option>
           </select>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-            <p id = "subject_id" style="padding-left: 10px;"></p>
-
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div id="temp_scatter"></div>
-      </div>
-      <div class="col-md-12">
-        <div id="case_heatmap"></div>
-      </div>  
-      <div class="col-md-12">
-        <div id="province_bar"></div>
-      </div>
-      <div class="col-md-12">
-        <div id="age_pie"></div>
-      </div>
-      <div class="col-md-12">
-        <div id="survival_pie"></div>
       </div>
     </div>
   </div>
-  <!-- Leaflet JavaScript -->
-  <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+  <div class="row map_row text-center">
+    <div class = "col-md-10" id="mapid"></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="temp_scatter"></div>
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="province_bar"></div>
+      </div>
+    </div>
+    <div class="row" id="pie_row">
+        <div class="col-md-4">
+          <div id="age_pie"></div>
+        </div>
+        <div class="col-md-4">
+          <div id="survival_pie"></div>
+        </div>
+      </div>
+  </div>
+  <footer>
+    <h3>Text here</h3>
+  </footer>
+
+
+  <!-- D3 Javascript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <!-- plotly Javascript -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Function to modify our data-->
   <script type="text/javascript">
     function myFunc(data) {
       return data
@@ -70,6 +83,7 @@
   </script>
   <!-- API Key -->
   <script type="text/javascript" src="static/js/config.js"></script>
+  <!-- our Javascript -->
   <script type = "text/javascript" src="static/js/logic.js"></script>
 </body>
 

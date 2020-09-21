@@ -1,0 +1,37 @@
+#pies {
+    display:inline-block;
+}
+
+.jumbotron {
+    background-color:#116466;
+    color: #D1E9E2;
+}
+
+.well {
+    background-color: #FFCB9A;
+}
+
+body {
+    background-color:#2C3531;
+}
+
+#mapid { 
+    height: 400px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ 
+}
+
+#province_bar, #temp_scatter, .map_row {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+#pie_row {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;  
+}

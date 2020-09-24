@@ -4,7 +4,7 @@ This is a joint project created by Gabe Djeudeu, Eli Krash, and Jason Cristini. 
 
 The first visualization is a user responsive map that displays the province that the user inputs. This map has markers on it that display both the number of cases as well as the deaths in that province. Below are images of this map. 
 
-<img src="Images/entire_country_map.png" width=500 height=400> <img src="Images/seoul_popup.png" width=500 height=400>  
+<img src="Images/entire_country_map.png" width=500 height=250> <img src="Images/seoul_popup.png" width=500 height=250>  
 
 Next we wanted to answer the question about correlation between average temperature per province and number of cases. Below is that visualization. As you can see from the scatter plot, there does not seem to be any correlation between the average temperature and number of cases, with Daegu being a large outlyer. 
 

@@ -16,4 +16,4 @@ Then we wanted to visualize how the cases were by province as well as how they n
 
 Lastly, to see the affects by age group created 2 pie charts. The first is the percent of total cases by age group. The second is the percent of mortality by age group. As you can see, the younger Koreans make up the most of the cases, but the percentage of deaths are mosting coming from the elderly. 
 
-<img src="Images/confirmed_by_age_pie.png" width=500> <img src="Images/mortality_by_age_pie.png" width=500>  
+<img src="Images/confirmed_by_age_pie.png" width=450> <img src="Images/mortality_by_age_pie.png" width=450>  

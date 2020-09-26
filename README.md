@@ -1,4 +1,4 @@
-# South-Korea-Coronavirus-Dashboard
+#  South-Korea-Coronavirus-Dashboard
 
 This is a joint project created by Gabe Djeudeu, Eli Krash, and Jason Cristini. We wanted to determine the impact of coronavirus around the world and started with a well documented country's statistics like South Korea. We also wanted to answer questions like: is there a correlation between contractions and temperature, which province was hit the hardest, what age group contracted the at the highest percent, and which age group was a the greatest risk of death. In order to do this, we started with multiple csv's from Kaggle.com which reported the cases, deaths, locations, ages, and other important metrics and loaded them into a PostgreSQL database. We then used a Flask API to access the database and run the visualizations. 
 
